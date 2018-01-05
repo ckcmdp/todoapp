@@ -23,9 +23,7 @@ const todos = (state = [], action) => {
       )
     case 'DELETE_TODO':
 
-      return state.slice(0, state.findIndex(x => x.id === action.id))
-                  .concat(state.slice(state.findIndex(x => x.id === action.id) + 1));
-
+      return state.filter(x => x.id !== action.id)
     default:
       return state
   }
