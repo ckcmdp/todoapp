@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types' 
 import EditTodo from '../containers/EditTodo'
 
-const Todo = ({editingStatus, onEditButtonClick, onDeleteButtonClick, onClick, completed, text }) => (
+const Todo = ({editThis, onEditButtonClick, onDeleteButtonClick, onClick, completed, text }) => (
 
   <div>
     <li
@@ -13,7 +13,7 @@ const Todo = ({editingStatus, onEditButtonClick, onDeleteButtonClick, onClick, c
     >
       {text}
     </li>
-    {editingStatus ?<EditTodo />:<button onClick={onEditButtonClick}>
+    {editThis ? <EditTodo /> : <button onClick={onEditButtonClick}>
       Edit Todo
     </button>}
     <button onClick={onDeleteButtonClick}>

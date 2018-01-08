@@ -8,7 +8,7 @@ const TodoList = ({ todos, editing, editing_id, onTodoClick, deleteOnClick, edit
       <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} 
             onDeleteButtonClick={() => deleteOnClick(todo.id)}
             onEditButtonClick={() => editOnClick(todo.id)}
-            editingStatus={editing}/>
+            editThis = {editing && editing_id === todo.id}/>
     ))}
   </ul>
 )
