@@ -7,25 +7,25 @@ class EditTodo extends Component{
   constructor(props){
     super();
     this.state={
-      input_value: props.todo.text
+      inputValue: props.todo.text
     }
   }
 
   changeInput = (event) => {
     let val = event.target.value;
     this.setState({
-      input_value: val
+      inputValue: val
     })
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    if (!this.state.input_value.trim()) {
+    if (!this.state.inputValue.trim()) {
      return
     }
-    this.props.dispatch(editThisTodo(this.props.todo.id, this.state.input_value))
+    this.props.dispatch(editThisTodo(this.props.todo.id, this.state.inputValue))
     this.setState({
-      input_value: ''
+      inputValue: ''
     })
   }
   
@@ -36,7 +36,7 @@ class EditTodo extends Component{
       <form
         onSubmit={(e) => this.handleSubmit(e)}
       >
-        <input type="text" value={this.state.input_value} onChange={(event) => this.changeInput(event)} />
+        <input type="text" value={this.state.inputValue} onChange={(event) => this.changeInput(event)} />
         <button type="submit">
           Save Todo
         </button>
