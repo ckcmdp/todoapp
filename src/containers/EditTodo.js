@@ -47,7 +47,7 @@ class EditTodo extends Component{
 const mapStateToProps = state => {
   return {
     editing_id: state.editingDetails.editing_id,
-    todo: state.todos.filter(todo => todo.id === state.editingDetails.editing_id)[0]
+    todo: state.todos.find(todo => todo.id === state.editingDetails.editing_id)
   }
 }
 
