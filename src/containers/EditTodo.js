@@ -3,51 +3,40 @@ import { connect } from 'react-redux'
 import { editThisTodo } from '../actions'
 import { Component } from 'react'
 
-class EditTodo extends Component{
-  constructor(props){
-    super();
-    this.state={
-      input_value: props.todo.text
+class EditTodo extends Component {
+
+  onHandleSubmit = (e,input) => {
+    e.preventDefault()
+    if (!input.value.trim()) {
+      return
     }
-    this.changeInput = this.changeInput.bind(this);
-  }
+    this.props.dispatch(editThisTodo(this.props.editing_id, input.value))
+    input.value = ''
+  }     
 
-  changeInput(event){
-    let val = event.target.value;
-    this.setState({
-      input_value: val
-    })
-  }
-  
   render(){
-
-  return (
-    <div>
-      <form
-        onSubmit={e => {
-          e.preventDefault()
-          if (!e.target[0].value.trim()) {
-            return
-          }
-          this.props.dispatch(editThisTodo(this.props.todo.id, e.target[0].value))
-          e.target[0].value = ''
-        }}
-      >
-        <input type="text" ref="input"
-           value={this.state.input_value} onChange={this.changeInput}
-        />
-        <button type="submit">
-          Save Todo
-        </button>
-      </form>
-    </div>
-  )
-}}
+    let input;
+    return (
+      <div>
+        <form
+          onSubmit={e => this.onHandleSubmit(e,input)}
+        >
+          <input
+            ref={node => {
+              input = node }} 
+          />
+          <button type="submit">
+            Save Todo
+          </button>
+        </form>
+      </div>
+    )
+  }
+}
 
 const mapStateToProps = state => {
   return {
-    editing_id: state.editingDetails.editing_id,
-    todo: state.todos.find(todo => todo.id === state.editingDetails.editing_id)
+    editing_id: state.editingDetails.editing_id
   }
 }
 
